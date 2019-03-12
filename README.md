@@ -149,7 +149,7 @@ export default {
 
 <h2 align="center">插件配置参数</h2>
 
-|Name|Type|Default|Description|Require|
+|Name|Type|Default|Description|Required|
 |:--:|:--:|:-----:|:----------|:--|
 |**`entry`**|`{String}`|`无`|路由页面的入口路径|`Yes`|
 |**`output`**|`{String}`|`无`|配置文件输出路径|`Yes`|
