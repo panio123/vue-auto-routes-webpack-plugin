@@ -53,12 +53,10 @@ class VueAutoRouteWebapckPlugin {
   }
 
   _fileChanged(file) {
-    log('fileChanged', file);
     this._isVue(file) && this._diffConfig(file);
   }
 
   _fileRmoved(file) {
-    log('fileRmoved', file);
     this._isVue(file) && this.start();
   }
 
@@ -99,11 +97,20 @@ class VueAutoRouteWebapckPlugin {
       _path,
       name,
       meta,
-      lazy
+      lazy,
+      redirect,
+      alias,
+      props,
+      path: _path_
     } = config;
     let route = this.routesMap[_path];
-    route.name = name;
-    route.meta = meta;
+
+    if (name !== undefined) route.name = name;
+    if (meta !== undefined) route.meta = meta;
+    if (redirect !== undefined) route.redirect = redirect;
+    if (alias !== undefined) route.alias = alias;
+    if (props !== undefined) route.props = props;
+    if (path !== undefined) route.path = path;
     route.components.default = lazy ? `${lazy}|lazy|${_path}` : _path;
     this.output();
   }
@@ -167,9 +174,13 @@ class VueAutoRouteWebapckPlugin {
     } = this.options;
     let {
       _path,
+      path: __path__,
       meta,
       name,
-      lazy
+      lazy,
+      redirect,
+      alias,
+      props
     } = routeConfig;
     let _reoutes = parentRoute && parentRoute.children || route;
     let pathItem = pathItems.shift();
@@ -197,8 +208,11 @@ class VueAutoRouteWebapckPlugin {
       } else {
         let _route_ = {
           name: name ? name : (useFileName && pathItem),
-          path: `${parentRoute?pathItem:pathItem === rootComponent ?'/':'/'+pathItem}`,
+          path: __path__ || `${parentRoute?pathItem:pathItem === rootComponent ?'/':'/'+pathItem}`,
           components,
+          redirect,
+          alias,
+          props,
           meta
         };
         this.routesMap[_path] = _route_;
@@ -208,7 +222,10 @@ class VueAutoRouteWebapckPlugin {
       let _route = _reoutes.find(r => r.path === pathItem || r.path === '/' + pathItem);
       if (!_route) {
         _route = {
-          path: `${parentRoute?pathItem:'/'+pathItem}`,
+          path: __path__ || `${parentRoute?pathItem:'/'+pathItem}`,
+          redirect,
+          alias,
+          props,
           children: [],
           components: {}
         }

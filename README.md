@@ -20,14 +20,22 @@
 
 ```
 src
+├── route
+│   └── index.js
+│   └── routes.js
 ├── views
-    ├── main
-    │    └── Index.vue
-    │    └── List.vue
-    ├── otherDir
     ├── Login.vue  
+    ├── main
+    │    ├── Index.vue
+    │    ├── List.vue
+    │    ├── subDir
+    │    │   ├── Index.vue
+    │    │   └── Order.vue
+    │    │
+    │    └── otherSubDir
     │
-    ├── ...
+    ├── otherDir
+    └── ...
 
 ```
 
@@ -157,6 +165,8 @@ export default {
 ```js
 
 export default {
+  // $$route 仅在需要的时候才配置，它并不是必须有的；
+  // $$route 可以通过修改插件配置自定义keyName，必须是一个纯对象。
   $$route:{
     // 路由名称，同 vue-router 的 name；
     name:'Login',
@@ -168,7 +178,14 @@ export default {
     //同 vue-router 的 meta；
     meta:{
       label:'登录'
-    }
+    },
+    // 同 vue-router 的 path
+    path:'/',
+    // 同 vue-router 的 redirect
+    redirect:'/login',
+    // 同 vue-router 的 alias
+    alias:'',
+
   }
 
 }
