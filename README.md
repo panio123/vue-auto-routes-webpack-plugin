@@ -122,6 +122,7 @@ export default {
 ```
 
 <h2 align="center">插件配置参数</h2>
+
 |Name|Type|Default|Description|require|
 |:--:|:--:|:-----:|:----------|:--|
 |**`entry`**|`{String}`|`无`|路由页面的入口路径|yes|
@@ -131,4 +132,12 @@ export default {
 |**`useFileName`**|`{Boolea}`|`false`|是否使用`文件名`作为`路由名称`|no|
 |**`ignoreDir`**|`{String}`|`components`|在插件遍历目录时，需要忽略的目录|no|
 |**`propsKeyName`**|`{String}`|`$$route`|组件内的路由配置key name|no|
+
+
+
+| Name | Academy | score | 
+| - | :-: | -: | 
+| Harry Potter | Gryffindor| 90 | 
+| Hermione Granger | Gryffindor | 100 | 
+| Draco Malfoy | Slytherin | 90 |
 
