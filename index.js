@@ -110,7 +110,7 @@ class VueAutoRouteWebapckPlugin {
     if (redirect !== undefined) route.redirect = redirect;
     if (alias !== undefined) route.alias = alias;
     if (props !== undefined) route.props = props;
-    if (path !== undefined) route.path = path;
+    if (_path_ !== undefined) route.path = _path_;
     route.components.default = lazy ? `${lazy}|lazy|${_path}` : _path;
     this.output();
   }
