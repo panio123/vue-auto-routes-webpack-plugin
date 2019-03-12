@@ -126,8 +126,8 @@ export default {
 |:--:|:--:|:-----:|:----------|:--|
 |**`entry`**|`{String}`|`无`|路由页面的入口路径|yes|
 |**`output`**|`{String}`|`无`|配置文件输出路径|yes|
-|**`rootComponent`**|`{String}`|`Login.vue`|根路由下的组件，也就是当路由为`/`时的页面，要带有`.vue`后缀哦|no|
-|**`indexComponent`**|`{String}`|`Index`|多级路由时，需要为每级路由提供一个入口，用于放置`<router-view />`承载子路由，【不要】带有`.vue`后缀|no|
+|**`rootComponent`**|`{String}`|`Login`|根路由下的组件，也就是当路由为`/`时的页面，【不要】带有`.vue`后缀哦|no|
+|**`indexComponent`**|`{String}`|`Index`|多级路由时，需要为每级路由提供一个入口，用于放置`<router-view />`承载子路由，【不要】带有`.vue`后缀哦|no|
 |**`useFileName`**|`{Boolea}`|`false`|是否使用`文件名`作为`路由名称`|no|
 |**`ignoreDir`**|`{String}`|`components`|在插件遍历目录时，需要忽略的目录|no|
 |**`propsKeyName`**|`{String}`|`$$route`|组件内的路由配置key name|no|
