@@ -1,6 +1,6 @@
 {
   "name": "vue-auto-routes-webpack-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "vue auto routes webpack plugin",
   "main": "index.js",
   "scripts": {
