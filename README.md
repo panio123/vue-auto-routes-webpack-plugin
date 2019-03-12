@@ -126,11 +126,11 @@ export default {
 
 |Name|Type|Default|Description|Require|
 |:--:|:--:|:-----:|:----------|:--|
-|**`entry`**|`{String}`|`无`|路由页面的入口路径|Yes|
-|**`output`**|`{String}`|`无`|配置文件输出路径|Yes|
-|**`rootComponent`**|`{String}`|`Login`|根路由下的组件，也就是当路由为`/`时的页面，【不要】带有`.vue`后缀哦|No|
+|**`entry`**|`{String}`|`无`|路由页面的入口路径|`Yes`|
+|**`output`**|`{String}`|`无`|配置文件输出路径|`Yes`|
+|**`rootComponent`**|`{String}`|`Login`|根路由下的组件，也就是当路由为`/`时的页面，【不要】带有`.vue`后缀哦|`Yes`|
 |**`indexComponent`**|`{String}`|`Index`|多级路由时，需要为每级路由提供一个入口，用于放置`<router-view />`承载子路由，【不要】带有`.vue`后缀哦|No|
-|**`useFileName`**|`{Boolea}`|`false`|是否使用`文件名`作为`路由名称`|No|
+|**`useFileName`**|`{Boolean}`|`false`|是否使用`文件名`作为`路由名称`|No|
 |**`ignoreDir`**|`{String}`|`components`|在插件遍历目录时，需要忽略的目录，目前只支持忽略一个|No|
 |**`propsKeyName`**|`{String}`|`$$route`|组件内的路由配置key name,有需要可以更换|No|
 
@@ -143,8 +143,10 @@ export default {
   $$route:{
     // 路由名称，同 vue-router 的 name；
     name:'Login',
-    // 是否懒加载， 1、true => 需要懒加载，但不指定包名；  2、String => 需要懒加载，且值为包名。 包名指的是 webpack 使用 import() 分包加载时需要配置的 [webpackChunkName]；
-    // 重点强调：lazy 只支持 布尔值：true 或 其它任意字符串；
+    // 是否懒加载
+    // 1、true => 需要懒加载，但不指定包名；  
+    // 2、String => 需要懒加载，且值为包名。 包名指的是 webpack 使用 import() 分包加载时需要配置的 [webpackChunkName]；
+    // 【重点强调】：lazy 只支持 布尔值-true 或 其它任意字符串；
     lazy:true,
     //同 vue-router 的 meta；
     meta:{
