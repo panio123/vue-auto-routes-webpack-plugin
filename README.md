@@ -16,8 +16,24 @@
 
 插件会从指定入口遍历读取[.vue]文件并在指定目录输出一个 vue-router 配置文件。部分路由配置也可在组件内通过 [$$route] 属性声明。
 
+目录示例
+
+```
+src
+├── views
+    ├── main
+    │    └── Index.vue
+    │    └── List.vue
+    ├── otherDir
+    ├── Login.vue  
+    │
+    ├── ...
+
+```
+
 **webpack.config.js**
 ```js
+
 const path = require('path');
 const VueAutoRouteWebpackPlugin = require('vue-auto-routes-webpack-plugin')
 
@@ -41,6 +57,7 @@ module.exports = {
     })
   ]
 }
+
 ```
 插件会在 [output] 目录下生成 [routes.js] 文件，大概像这样
 
