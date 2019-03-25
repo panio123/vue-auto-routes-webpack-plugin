@@ -137,7 +137,7 @@ class VueAutoRouteWebapckPlugin {
     data = null;
   }
   pushOneRoute(config) {
-    let pathItems = config._path.replace(this.options.entry, '').split('/');
+    let pathItems = config._path.replace(this.options.entry, '').split(path.sep);
     this.touchRoute(this.routes, null, pathItems, config);
   }
 
@@ -152,7 +152,7 @@ class VueAutoRouteWebapckPlugin {
   output() {
     let routes = JSON.stringify(this.routes);
     routes = routes.replace(/"default":(".+?\.vue")/g, (v1, v2) => {
-      let _v2 = v2.slice(1, -1).split('|lazy|');
+      let _v2 = v2.slice(1, -1).replace(/\\+/g, '/').split('|lazy|');
       if (_v2.length === 1) {
         return `default:require('${_v2[0]}').default`;
       } else if (_v2.length === 2) {
@@ -197,6 +197,7 @@ class VueAutoRouteWebapckPlugin {
       // } else {
       //   components.default = _path_;
       // }
+      // console.log(_path_);
       components.default = _path_;
       if (pathItem === indexComponent) {
         if (parentRoute) {
