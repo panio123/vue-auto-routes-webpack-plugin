@@ -246,7 +246,9 @@ class VueAutoRouteWebapckPlugin {
       if (stat && stat.isDirectory()) {
         files = files.concat(this.fetchFiles(filePath));
       } else {
-        files.push(filePath);
+        if (this._isVue(file)) {
+          files.push(filePath);
+        }
       }
     });
     return files;
