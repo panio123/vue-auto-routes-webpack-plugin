@@ -57,7 +57,7 @@ class VueAutoRouteWebapckPlugin {
   }
 
   _fileRmoved(file) {
-    this._isVue(file) && this.start();
+    (this._isVue(file) || this._isDirectory(file)) && this.start();
   }
 
   _hook(compiler, v3Name, v4Name, cb) {
@@ -71,6 +71,8 @@ class VueAutoRouteWebapckPlugin {
   start() {
     let filesPath = this.fetchFiles(this.options.entry);
     this.routes = [];
+    this.files = {};
+    this.routesMap = {};
     this.filesPath = filesPath;
     this.parseFiles();
     this.buildRoute();
@@ -136,6 +138,7 @@ class VueAutoRouteWebapckPlugin {
     }
     data = null;
   }
+
   pushOneRoute(config) {
     let pathItems = config._path.replace(this.options.entry, '').split(path.sep);
     this.touchRoute(this.routes, null, pathItems, config);
@@ -236,14 +239,18 @@ class VueAutoRouteWebapckPlugin {
     }
   }
 
+  _isDirectory(path) {
+    let stat = fs.statSync(path);
+    return stat && stat.isDirectory();
+  }
+
   fetchFiles(dir) {
     let files = [];
     let list = fs.readdirSync(dir);
     list.forEach(file => {
       if (file === this.options.ignoreDir) return;
       let filePath = path.join(dir, file);
-      let stat = fs.statSync(filePath);
-      if (stat && stat.isDirectory()) {
+      if (this._isDirectory(filePath)) {
         files = files.concat(this.fetchFiles(filePath));
       } else {
         if (this._isVue(file)) {
