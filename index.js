@@ -53,6 +53,10 @@ class VueAutoRouteWebapckPlugin {
   }
 
   _fileChanged(file) {
+    let path = file.replace(this.options.entry, '');
+    if (path.indexOf(this.options.ignoreDir + '/') != -1) {
+      return;
+    }
     this._isVue(file) && this._diffConfig(file);
   }
 
