@@ -211,6 +211,10 @@ class VueAutoRouteWebapckPlugin {
           parentRoute.name = name ? name : (useFileName && `${parentRoute.path}/${pathItem}`);
           parentRoute.components = Object.assign(parentRoute.components, components);
           parentRoute.meta = meta;
+          if (redirect !== undefined) parentRoute.redirect = redirect;
+          if (lazy !== undefined) parentRoute.lazy = lazy;
+          if (alias !== undefined) parentRoute.alias = alias;
+          if (props !== undefined) parentRoute.props = props;
           this.routesMap[_path] = parentRoute;
         }
       } else {
@@ -287,6 +291,7 @@ class VueAutoRouteWebapckPlugin {
       if (route) {
         try {
           route = new Function('return ' + route.replace(/[\r\n]+/g, ''))();
+          // console.log(route);
           route = Object.assign(_config, route);
         } catch (error) {
           console.error(route);
