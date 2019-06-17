@@ -35,7 +35,7 @@ class VueAutoRouteWebapckPlugin {
       cb && cb();
     });
     this._hook(compiler, 'done', 'done', (compilation, cb) => {
-      if (!this.watcher) {
+      if (!this.watcher && process.env.NODE_ENV === "development") {
         this.watcher = chokidar.watch(this.options.entry, {
           ignoreInitial: true
         });
