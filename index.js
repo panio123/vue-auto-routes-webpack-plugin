@@ -230,7 +230,7 @@ class VueAutoRouteWebapckPlugin {
         this.routesMap[_path] = _route_;
         _reoutes.push(_route_);
       }
-    } else {
+    } else if (this.options.ignoreDir != pathItem) {
       let _route = _reoutes.find(r => r.path === pathItem || r.path === '/' + pathItem);
       if (!_route) {
         _route = {
