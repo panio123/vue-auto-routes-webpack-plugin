@@ -61,7 +61,10 @@ module.exports = {
       output: resolve('src/route/routes.js'),
       rootComponent: 'Login',
       indexComponent: 'Index',
-      useFileName: true
+      useFileName: true,
+      layouts:{
+        main:reslove('src/layout/index')
+      }
     })
   ]
 }
@@ -158,6 +161,7 @@ export default {
 |**`useFileName`**|`{Boolean}`|`false`|是否使用`文件名`作为`路由名称`|No|
 |**`ignoreDir`**|`{String}`|`components`|在插件遍历目录时，需要忽略的目录，目前只支持忽略一个|No|
 |**`propsKeyName`**|`{String}`|`$$route`|组件内的路由配置key name,有需要可以更换|No|
+|**`layouts`**|`{Object}`|`{}`|公用布局配置，可在 `indexComponent` 组件中通过 `$$route.layout` 来设置当前路由需要使用的布局  |No|
 
 
 <h2 align="center">【$$route】配置参数</h2>
@@ -185,6 +189,8 @@ export default {
     redirect:'/login',
     // 同 vue-router 的 alias
     alias:'',
+    // 仅在 indexComponent 组件中使用才有效
+    layout:'main'
 
   }
 

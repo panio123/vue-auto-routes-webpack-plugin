@@ -15,7 +15,8 @@ class VueAutoRouteWebapckPlugin {
       indexComponent: 'Index',
       ignoreDir: 'components',
       useFileName: false,
-      propsKeyName: '$$route'
+      propsKeyName: '$$route',
+      layouts: {}
     }, options);
     this.options.entry = path.join(options.entry, '/');
     this.files = {};
@@ -177,7 +178,8 @@ class VueAutoRouteWebapckPlugin {
     let {
       rootComponent,
       indexComponent,
-      useFileName
+      useFileName,
+      layouts
     } = this.options;
     let {
       _path,
@@ -187,7 +189,8 @@ class VueAutoRouteWebapckPlugin {
       lazy,
       redirect,
       alias,
-      props
+      props,
+      layout
     } = routeConfig;
     let _reoutes = parentRoute && parentRoute.children || route;
     let pathItem = pathItems.shift();
@@ -208,6 +211,9 @@ class VueAutoRouteWebapckPlugin {
       components.default = _path_;
       if (pathItem === indexComponent) {
         if (parentRoute) {
+          if (layouts[layout]) {
+            components.default = layouts[layout];
+          }
           parentRoute.name = name ? name : (useFileName && `${parentRoute.path}/${pathItem}`);
           parentRoute.components = Object.assign(parentRoute.components, components);
           parentRoute.meta = meta;

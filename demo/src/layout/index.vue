@@ -1,12 +1,11 @@
 <script>
 export default {
-  $$route: {
-    layout: "main",
-  },
+  name: "layout",
 };
 </script>
 <template>
-  <div class="main-index-page">
+  <div class="layout">
+    <h1>layout-main</h1>
     <router-view></router-view>
   </div>
 </template>
